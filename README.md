@@ -110,6 +110,9 @@ if(str){}
 
 - 【强制】非分页数据一律不允许使用List组件。List组件的最大特性就是支持下拉刷新和滚动加载，它的内部维护了分页相关的数据。如果请求的数据不支持分页，那就不应该使用List组件，如果页面需要下拉刷新，使用PullRefresh组件代替List组件。
 
+- 【强制】最好使用jQuery与Zepto的公有api，这样的好处是可以根据需要切换BUI的基础依赖js，BUI默认依赖了Zepto，但是可能被替换为jQuery（典型情况就是项目中引入了依赖于jQuery的js库），如果项目中使用了Zepto的独有api（如Touch组件）将导致项目运行报错，此时要将所有Zepto的独有api调用删除这是很困难的。反之亦如是，如果调用了jQuery的独有api，这样将项目中的Zepto替换为jQuery时也会导致项目运行报错，虽然这种情况较为少见（Zepto替换为jQuery可以理解为一次Zepto的升级，因为jQuery >= Zepto，反之将jQuery降级的情况也就少见了），但是为了防止这类问题，最好的办法就是使用jQuery与Zepto的api的交集，这样不管作升级还是降级处理，项目都可以很好地完成适配。
+**注：**jQuery与Zepto的一些区别：jQuery提供伪类选择器，Zepto没有；jQuery的data()支持对象存储，Zepto不支持；Zepto提供了tap/doubletap等移动端的事件，jQuery没有（这就是为什么项目中有双击的需求，我们都不使用Zepto而转而使用touch.js的原因了）。具体所有的区别需要阅读jQuery与Zepto的官方文档进行对比。
+
 
 ### art-tempalte篇
 - 【重要】id重复问题：
