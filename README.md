@@ -25,7 +25,11 @@
 
 
 ### 命名规范
-- 【推荐】BUI的组件推荐使用“ui”开头，如"uiDialog"、"uiUserList"，这样做的好处是我们可以快速区分页面表现数据与业务数据，如"userList"与"uiUserList"一看就知道userList是业务数据，uiUserList是用来展示业务数据的List组件。
+- 【强制】http接口必须以动名词的形式命名，如动词get+名词message，命名为getMessage，这样可以清晰地表明意图，由于大部分的接口是作CURD操作，所以推荐以create/save/update/delete/get/list开头。此外，接口的命名长度没有限制，只要能清晰表明意图都可以使用，短而优的命名固然好，但是有时候会丢失信息，如果有的接口具备一定的特殊性，应该把接口的意图完整描述出来，如listMessageInClass，从命名就可以推测出此接口的作用是获取班级下的消息列表。
+正例：getMessage、listUser、deleteReply、updateUserInfo
+反例：user、entityCreate、startHomework、toCreatePage
+
+- 【强制】BUI的组件必须使用“ui”开头，如"uiDialog"、"uiUserList"，这样做的好处是我们可以快速区分页面表现数据与业务数据，如"userList"与"uiUserList"一看就知道userList是业务数据，uiUserList是用来展示业务数据的List组件。
 
 - 【推荐】html模板的组装函数推荐使用”template“开头，如"templateUserList"一看就知道是生成用户列表的模板生成函数。
 
@@ -38,12 +42,7 @@ function renderUserList(){
 }
 ```
 
-- 【强制】Action层的方法要清晰地表明意图，大部分情况下是作增/删/改/查，所以方法的命名以save/delete/get/list开头再合适不过了。
-正例：saveSchedule、getTeachingPlan、deleteReply、updateStatus
-反例：startHomework、voteQuestionnaireRes、editVote、createQuestion
-
-- 【重要】BUI模块抛出的接口名称应清楚地描述其作用，如用户列表模块抛出**刷新用户列表**的接口名称为pageview.refreshUserList，而不要使用pageivew.back等无意义的名称。
-
+- 【强制】BUI模块抛出的接口名称应清楚地描述其作用，如用户列表模块抛出**刷新用户列表**的接口名称为pageview.refreshUserList，而不要使用pageivew.back等无意义的名称。
 
 
 ### JS篇
@@ -114,7 +113,7 @@ if(str){}
 **注：**jQuery与Zepto的一些区别：jQuery提供伪类选择器，Zepto没有；jQuery的data()支持对象存储，Zepto不支持；Zepto提供了tap/doubletap等移动端的事件，jQuery没有（这就是为什么项目中有双击的需求，我们都不使用Zepto而转而使用touch.js的原因了）。具体所有的区别需要阅读jQuery与Zepto的官方文档进行对比。
 
 
-### art-tempalte篇
+### art-template篇
 - 【重要】id重复问题：
 template()函数的第一个参数为容器的id，这个id在全局必须是唯一的，否则只会取所有元素的第一个（原理：temlate()函数的内部会使用document.getElementById()的方式获取DOM，如果id重复，则获取第一个）。
 **最佳实践：**为了杜绝脚本标签id重复的问题（尤其在单页应用中此问题更严重），最好使用一个不可能重复的字符串作为其id（例如UUID、GUID等）。
