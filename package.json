@@ -1,0 +1,23 @@
+{
+  "name": "dev-guides",
+  "version": "0.0.1",
+  "description": "开发规范",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": "git@github.com:shoppingzh/dev-guides.git",
+  "author": "shoppingzh <1049262057@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "vuepress": "^1.8.2"
+  },
+  "dependencies": {
+    "ant-design-vue": "1.7.2",
+    "core-js": "2.6.12",
+    "vuepress-theme-reco": "1.5.7",
+    "vuepress-util": "^0.0.10"
+  }
+}
