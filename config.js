@@ -1,3 +1,6 @@
 module.exports = {
-  navs: []
+  navs: [{
+    name: '编码规范',
+    path: 'code'
+  }]
 }
